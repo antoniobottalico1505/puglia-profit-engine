@@ -1,0 +1,26 @@
+# dependencies
+node_modules/
+web/node_modules/
+.venv/
+__pycache__/
+*.pyc
+
+# builds
+web/dist/
+.cache/
+
+# env / secrets
+.env
+.env.*
+!*.env.example
+
+# local db
+*.db
+*.sqlite
+*.sqlite3
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: puglia-profit-engine-api
+    env: python
+    plan: starter
+    region: frankfurt
+    rootDir: api
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: ENV
+        value: production
+      - key: ADMIN_TOKEN
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: http://localhost:5173
+      - key: FRONTEND_URL
+        value: http://localhost:5173
+      - key: WHATSAPP_PHONE
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: puglia-profit-engine-db
+          property: connectionString
+
+databases:
+  - name: puglia-profit-engine-db
+    plan: starter
+    region: frankfurt
